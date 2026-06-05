@@ -15,6 +15,8 @@
             --accent-light: #D4E6F1;
             --border: #E0E6EB;
             --radius: 12px;
+            --strava: #FC4C02;
+            --strava-light: #FEE9E0;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -88,6 +90,10 @@
             gap: 0.5rem;
         }
 
+        .section h2.strava-heading {
+            color: var(--strava);
+        }
+
         .section h2 .num {
             display: inline-flex;
             align-items: center;
@@ -101,6 +107,11 @@
             font-size: 0.75rem;
             font-weight: 700;
             flex-shrink: 0;
+        }
+
+        .section h2.strava-heading .num {
+            background: var(--strava-light);
+            color: var(--strava);
         }
 
         .section p {
@@ -122,6 +133,29 @@
             font-weight: 500;
             margin: 0;
             font-size: 0.9rem;
+        }
+
+        .strava-box {
+            background: var(--strava-light);
+            border-left: 3px solid var(--strava);
+            padding: 1rem 1.2rem;
+            border-radius: 0 var(--radius) var(--radius) 0;
+            margin: 1rem 0;
+        }
+
+        .strava-box p {
+            color: #7A2600;
+            font-weight: 500;
+            margin: 0 0 0.4rem;
+            font-size: 0.9rem;
+        }
+
+        .strava-box p:last-child {
+            margin: 0;
+        }
+
+        .strava-box a {
+            color: var(--strava);
         }
 
         ul {
@@ -149,6 +183,10 @@
             background: var(--accent);
         }
 
+        ul.strava-list li::before {
+            background: var(--strava);
+        }
+
         .footer {
             text-align: center;
             padding: 2rem 1.5rem;
@@ -173,7 +211,7 @@
 
 <div class="container">
 
-    <p class="effective-date">Effective date: 11 April 2026</p>
+    <p class="effective-date">Effective date: 5 June 2026</p>
 
     <div class="section">
         <h2><span class="num">1</span> Introduction</h2>
@@ -183,9 +221,10 @@
     <div class="section">
         <h2><span class="num">2</span> Information We Collect</h2>
         <div class="highlight-box">
-            <p>The App does not collect, store, or transmit any personal data. There are no user accounts, no login, no analytics, no advertising, and no tracking of any kind.</p>
+            <p>WeirWoodWind does not require any account or login. The core wind and tide features work entirely without providing any personal information. There are no analytics, no advertising, and no tracking of any kind.</p>
         </div>
         <p>The App does not use any third-party analytics, advertising, or tracking SDKs.</p>
+        <p>If you choose to connect your Strava account (see section 6), your Strava OAuth tokens are stored locally on your device as described below.</p>
     </div>
 
     <div class="section">
@@ -195,13 +234,16 @@
             <li>Wind speed unit (mph, knots, or kph)</li>
             <li>Wind indicator thresholds</li>
             <li>High tide window setting</li>
+            <li>Disclaimer acceptance flag</li>
+            <li>What's New version seen flag</li>
         </ul>
-        <p>This data never leaves your device and is not accessible to the developer or any third party.</p>
+        <p>If you connect Strava, your Strava OAuth access and refresh tokens are also stored locally on your device. This data never leaves your device and is not accessible to the developer or any third party.</p>
     </div>
 
     <div class="section">
         <h2><span class="num">4</span> Data Retention and Deletion</h2>
-        <p>Since no personal data is collected or transmitted, there is nothing retained on our end. Local preferences stored on your device can be cleared at any time by uninstalling the App.</p>
+        <p>Since no personal data is collected or transmitted to us, there is nothing retained on our end. Local preferences stored on your device can be cleared at any time by uninstalling the App or clearing the App's storage in your device settings.</p>
+        <p>To remove your Strava connection specifically, go to Settings and tap <em>Disconnect Strava</em>. This immediately deletes your Strava tokens from your device.</p>
     </div>
 
     <div class="section">
@@ -217,28 +259,50 @@
     </div>
 
     <div class="section">
-        <h2><span class="num">6</span> Third-Party Sharing</h2>
-        <p>WeirWoodWind does not share, sell, rent, or disclose any of your data to third parties. The App contains no third-party analytics, advertising, or tracking services.</p>
+        <h2 class="strava-heading"><span class="num">6</span> Strava Integration (Optional)</h2>
+        <p><strong>Connecting Strava is entirely optional.</strong> All wind and tide features work without it. You can connect or disconnect at any time from the Settings screen.</p>
+        <p>When you tap <em>Connect Strava</em>, you are taken to Strava's own login page to authorise the App. WeirWoodWind never sees your Strava username or password — the OAuth process is handled entirely by Strava.</p>
+        <p>Once connected, the App stores an OAuth access token and refresh token locally on your device. These tokens allow the App to fetch your recent Strava activities on your behalf.</p>
+        <p><strong>What the App fetches from Strava:</strong></p>
+        <ul class="strava-list">
+            <li>A list of your recent windsurf and kitesurf activities (last 30 days)</li>
+            <li>For a selected activity: name, date, duration, distance, and GPS speed data</li>
+        </ul>
+        <p>This data is used only to display session information and overlay GPS speed on the wind graphs within the App. It is not transmitted to WeirWoodWind servers, not stored beyond the current session, and not shared with any third party.</p>
+        <div class="strava-box">
+            <p><strong>Strava's own privacy policy applies to data Strava holds about you.</strong></p>
+            <p>WeirWoodWind accesses your Strava data only with your explicit authorisation. You can revoke access at any time from Settings → <em>Disconnect Strava</em>, or directly via your <a href="https://www.strava.com/settings/apps" target="_blank">Strava account settings</a>.</p>
+        </div>
     </div>
 
     <div class="section">
-        <h2><span class="num">7</span> Your Rights</h2>
-        <p>As the App does not collect any personal data, there is no personal data to access, modify, or delete. You can remove all locally stored preferences at any time by uninstalling the App or clearing the App's storage.</p>
+        <h2><span class="num">7</span> Third-Party Sharing</h2>
+        <p>WeirWoodWind does not share, sell, rent, or disclose any of your data to third parties. The only outbound connections the App makes are:</p>
+        <ul>
+            <li>Direct reads from the wind and tide data sources listed in section 5</li>
+            <li>Strava API calls, when you have connected your Strava account</li>
+        </ul>
+        <p>The App contains no third-party analytics, advertising, or tracking services.</p>
+    </div>
+
+    <div class="section">
+        <h2><span class="num">8</span> Your Rights</h2>
+        <p>As the App does not collect any personal data on our servers, there is no personal data held by us to access, modify, or delete. You can remove all locally stored preferences at any time by uninstalling the App or clearing the App's storage.</p>
         <p>If you are located in the European Economic Area or the United Kingdom, you have additional rights under the UK GDPR and the Data Protection Act 2018, including the right to access, rectification, and erasure of your personal data. Since all data is stored locally and not processed by us, these rights are effectively exercised through the controls described above.</p>
     </div>
 
     <div class="section">
-        <h2><span class="num">8</span> Children's Privacy</h2>
+        <h2><span class="num">9</span> Children's Privacy</h2>
         <p>The App is not directed at children under the age of 13 (or under 16 in the EEA/UK). We do not knowingly collect data from children. If you believe a child has provided data through the App, please contact us so we can advise on how to remove the data from the device.</p>
     </div>
 
     <div class="section">
-        <h2><span class="num">9</span> Changes to This Policy</h2>
+        <h2><span class="num">10</span> Changes to This Policy</h2>
         <p>We may update this Privacy Policy from time to time. Any changes will be reflected on this page with an updated effective date. We encourage you to review this policy periodically.</p>
     </div>
 
     <div class="section">
-        <h2><span class="num">10</span> Contact</h2>
+        <h2><span class="num">11</span> Contact</h2>
         <p>If you have any questions or concerns about this Privacy Policy or the App's data practices, please contact us at:</p>
         <p><strong>weirwoodwind@domandclaire.com</strong></p>
     </div>
